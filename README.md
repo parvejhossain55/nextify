@@ -1,6 +1,6 @@
 # Nextify
 
-A production-ready, scalable Next.js 16 boilerplate with feature-based architecture.
+A production-ready, scalable Next.js 16 boilerplate with authentication, Prisma, PostgreSQL, reusable UI components, and feature-based architecture.
 
 ## Tech Stack
 
@@ -52,6 +52,18 @@ src/
 └── store/            # Zustand stores
 ```
 
+## Features
+
+- 🔐 Authentication with NextAuth.js
+- 👥 User management with role-based access
+- 📝 Form validation with React Hook Form + Zod
+- 🗄️ Database ORM with Prisma
+- 🎨 Beautiful UI with shadcn/ui
+- 📊 Data fetching with TanStack Query
+- 🧪 E2E testing with Playwright
+- 🎯 Type-safe with TypeScript
+- 🚀 Optimized for production
+
 ## Getting Started
 
 ### Prerequisites
@@ -80,13 +92,58 @@ pnpm prisma migrate dev
 pnpm dev
 ```
 
-### Environment Variables
+### Configure Environment
+
+Create a `.env` file in the project root:
 
 ```env
-DATABASE_URL=postgresql://user:password@localhost:5432/nextify?schema=public
-NEXTAUTH_SECRET=your-secret-here
-NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/nextify"
+AUTH_SECRET="your-auth-secret"
+AUTH_URL="http://127.0.0.1:3000"
 ```
+
+Generate a strong `AUTH_SECRET` with:
+
+```bash
+openssl rand -base64 32
+```
+
+### Set Up the Database
+
+Run the Prisma migration and generate the Prisma client:
+
+```bash
+pnpm prisma migrate dev
+pnpm prisma generate
+```
+
+The Prisma client is generated into `generated/prisma`.
+
+### Run the Development Server
+
+```bash
+pnpm dev
+```
+
+Open [http://127.0.0.1:3000](http://127.0.0.1:3000) in your browser.
+
+## Authentication
+
+Nextify uses NextAuth.js with a credentials provider. Users can register with a name, email, and password. Passwords are hashed with `bcryptjs` before being stored.
+
+The dashboard route is protected. Unauthenticated users are redirected to `/login`, and users with the `ADMIN` role can see the user list.
+
+## Database
+
+The Prisma schema includes:
+
+- `User`
+- `Account`
+- `Session`
+- `VerificationToken`
+- `Role`
+
+The current datasource is PostgreSQL and reads its connection string from `DATABASE_URL`.
 
 ## Available Scripts
 
@@ -95,25 +152,29 @@ pnpm dev          # Start development server
 pnpm build        # Build for production
 pnpm start        # Start production server
 pnpm lint         # Run ESLint
-pnpm lint:fix     # Fix ESLint errors
+pnpm lint:fix     # Fix ESLint issues
 pnpm format       # Format code with Prettier
 pnpm format:check # Check code formatting
+pnpm test:install # Install Playwright browsers
 pnpm test         # Run Playwright tests
 pnpm test:ui      # Run Playwright tests with UI
+pnpm test:headed  # Run Playwright tests in headed mode
 ```
 
-## Features
+## Testing
 
-- 🔐 Authentication with NextAuth.js
-- 👥 User management with role-based access
-- 📝 Form validation with React Hook Form + Zod
-- 🗄️ Database ORM with Prisma
-- 🎨 Beautiful UI with shadcn/ui
-- 📊 Data fetching with TanStack Query
-- 🧪 E2E testing with Playwright
-- 🎯 Type-safe with TypeScript
-- 🚀 Optimized for production
+Install Playwright browsers before running tests for the first time:
+
+```bash
+pnpm test:install
+```
+
+Then run:
+
+```bash
+pnpm test
+```
 
 ## License
 
-MIT
+This project is licensed under the terms in [LICENSE](./LICENSE).

@@ -7,7 +7,7 @@ test("should display home page", async ({ page }) => {
 
 test("should navigate to login page", async ({ page }) => {
   await page.goto("/");
-  await page.click("text=Sign In");
+  await page.getByRole("link", { name: "Sign In" }).click();
   await expect(page).toHaveURL("/login");
-  await expect(page.locator("h1")).toContainText("Login");
+  await expect(page.getByText("Login", { exact: true })).toBeVisible();
 });
