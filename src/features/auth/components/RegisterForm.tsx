@@ -28,11 +28,7 @@ export function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<RegisterFormData>({
+  const { register, handleSubmit, formState: { errors }} = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
   });
 
