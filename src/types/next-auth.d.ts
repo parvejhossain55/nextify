@@ -12,6 +12,7 @@ declare module 'next-auth' {
       id: string;
       email: string;
       name?: string | null;
+      avatar?: string | null;
       role: string;
     };
   }
