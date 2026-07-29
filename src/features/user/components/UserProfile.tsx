@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import { useQuery } from '@tanstack/react-query';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+import { useQuery } from "@tanstack/react-query";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export function UserProfile() {
   const { data: session } = useQuery({
-    queryKey: ['session'],
+    queryKey: ["session"],
     queryFn: async () => {
-      const response = await fetch('/api/auth/session');
-      if (!response.ok) throw new Error('Failed to fetch session');
+      const response = await fetch("/api/auth/session");
+      if (!response.ok) throw new Error("Failed to fetch session");
       return response.json();
     },
   });
@@ -19,11 +19,12 @@ export function UserProfile() {
     return <div>Loading...</div>;
   }
 
-  const initials = session.user.name
-    ?.split(' ')
-    .map((n: string) => n[0])
-    .join('')
-    .toUpperCase() || 'U';
+  const initials =
+    session.user.name
+      ?.split(" ")
+      .map((n: string) => n[0])
+      .join("")
+      .toUpperCase() || "U";
 
   return (
     <Card className="w-full max-w-md">
@@ -38,7 +39,7 @@ export function UserProfile() {
           </Avatar>
           <div>
             <h3 className="text-lg font-medium">{session.user.name}</h3>
-            <p className="text-sm text-muted-foreground">{session.user.email}</p>
+            <p className="text-muted-foreground text-sm">{session.user.email}</p>
           </div>
         </div>
         <div>

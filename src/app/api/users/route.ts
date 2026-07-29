@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
-import { auth } from '@/lib/auth/auth';
-import { prisma } from '@/lib/prisma/prisma';
+import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth/auth";
+import { prisma } from "@/lib/prisma/prisma";
 
 export async function GET() {
   const session = await auth();
-  
-  if (!session?.user || session.user.role !== 'ADMIN') {
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+
+  if (!session?.user || session.user.role !== "ADMIN") {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
   try {
@@ -21,7 +21,7 @@ export async function GET() {
     });
 
     return NextResponse.json(users);
-  } catch (error) {
-    return NextResponse.json({ message: 'Internal server error' }, { status: 500 });
+  } catch {
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }

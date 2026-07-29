@@ -4,23 +4,23 @@ export const capitalize = (str: string): string => {
 
 export const truncate = (str: string, length: number): string => {
   if (str.length <= length) return str;
-  return str.slice(0, length) + '...';
+  return str.slice(0, length) + "...";
 };
 
 export const slugify = (str: string): string => {
   return str
     .toLowerCase()
     .trim()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 };
 
 export const generateInitials = (name: string): string => {
   return name
-    .split(' ')
+    .split(" ")
     .map((n) => n[0])
-    .join('')
+    .join("")
     .toUpperCase()
     .slice(0, 2);
 };

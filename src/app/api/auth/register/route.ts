@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server';
-import bcrypt from 'bcryptjs';
-import { prisma } from '@/lib/prisma/prisma';
+import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma/prisma";
 
 export async function POST(request: Request) {
   try {
@@ -8,10 +8,7 @@ export async function POST(request: Request) {
     const { name, email, password } = body;
 
     if (!name || !email || !password) {
-      return NextResponse.json(
-        { message: 'Missing required fields' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "Missing required fields" }, { status: 400 });
     }
 
     const existingUser = await prisma.user.findUnique({
@@ -19,10 +16,7 @@ export async function POST(request: Request) {
     });
 
     if (existingUser) {
-      return NextResponse.json(
-        { message: 'User already exists' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "User already exists" }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -36,14 +30,11 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      { message: 'User created successfully', userId: user.id },
+      { message: "User created successfully", userId: user.id },
       { status: 201 }
     );
   } catch (error) {
-    console.error('Registration error:', error);
-    return NextResponse.json(
-      { message: 'Internal server error' },
-      { status: 500 }
-    );
+    console.error("Registration error:", error);
+    return NextResponse.json({ message: "Internal server error" }, { status: 500 });
   }
 }
