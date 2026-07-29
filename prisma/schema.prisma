@@ -23,6 +23,7 @@ model User {
 
   sessions      Session[]
   accounts      Account[]
+  resetTokens   ResetToken[]
 
   @@index([email])
 }
@@ -63,6 +64,17 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model ResetToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
 }
 
 enum Role {
