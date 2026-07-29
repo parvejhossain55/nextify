@@ -50,6 +50,8 @@ src/
 │   ├── prisma/       # Prisma client
 │   └── query-client/ # TanStack Query provider
 └── store/            # Zustand stores
+test/
+└── e2e/              # End-to-end tests (Playwright)
 ```
 
 ## Features
@@ -162,6 +164,8 @@ pnpm test:headed  # Run Playwright tests in headed mode
 ```
 
 ## Testing
+
+E2E tests are located in `test/e2e/` and use Playwright.
 
 Install Playwright browsers before running tests for the first time:
 
