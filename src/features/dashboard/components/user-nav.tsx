@@ -18,7 +18,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
@@ -58,26 +57,24 @@ export function UserNav({ user }: UserNavProps) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            className="data-[state=open]:bg-muted relative flex h-9 items-center justify-start gap-2 px-1.5"
-            aria-label="User menu"
-          >
-            <Avatar size="sm">
-              <AvatarFallback className="text-xs font-semibold">{display.initials}</AvatarFallback>
-            </Avatar>
-            <div className="hidden min-w-0 flex-col items-start text-left md:flex">
-              <span className="truncate text-sm leading-none font-medium">{display.name}</span>
-              <span className="text-muted-foreground mt-0.5 truncate text-xs leading-none">
-                {display.email}
-              </span>
-            </div>
-            <ChevronsUpDown className="text-muted-foreground ml-1 size-3.5" />
-          </Button>
-        }
-      />
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          className="data-[state=open]:bg-muted relative flex h-9 items-center justify-start gap-2 px-1.5"
+          aria-label="User menu"
+        >
+          <Avatar className="h-8 w-8">
+            <AvatarFallback className="text-xs font-semibold">{display.initials}</AvatarFallback>
+          </Avatar>
+          <div className="hidden min-w-0 flex-col items-start text-left md:flex">
+            <span className="truncate text-sm leading-none font-medium">{display.name}</span>
+            <span className="text-muted-foreground mt-0.5 truncate text-xs leading-none">
+              {display.email}
+            </span>
+          </div>
+          <ChevronsUpDown className="text-muted-foreground ml-1 size-3.5" />
+        </Button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-54">
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => go(ROUTES.SETTINGS)}>
@@ -111,8 +108,7 @@ export function UserNav({ user }: UserNavProps) {
         <DropdownMenuGroup>
           <DropdownMenuItem
             onClick={() => void handleSignOut()}
-            variant="destructive"
-            className="w-full cursor-pointer"
+            className="text-destructive focus:text-destructive w-full cursor-pointer"
           >
             <LogOut className="size-4" />
             Sign out

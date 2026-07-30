@@ -31,18 +31,16 @@ export function ThemeToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        render={
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle theme"
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <Icon className="size-[18px] transition-all" />
-          </Button>
-        }
-      />
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label="Toggle theme"
+          className="text-muted-foreground hover:text-foreground"
+        >
+          <Icon className="size-[18px] transition-all" />
+        </Button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-40">
         <DropdownMenuGroup>
           <DropdownMenuItem

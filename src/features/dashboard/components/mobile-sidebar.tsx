@@ -15,12 +15,7 @@ export function MobileSidebar() {
 
   return (
     <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-      <SheetContent
-        side="left"
-        showCloseButton
-        className="w-72 !border-r !p-0"
-        aria-describedby={undefined}
-      >
+      <SheetContent side="left" className="w-72 !border-r !p-0" aria-describedby={undefined}>
         <SheetHeader className="border-sidebar-border/70 !border-b !p-4">
           <SheetTitle className="flex items-center gap-2">
             <div className="bg-sidebar-primary text-sidebar-primary-foreground flex size-8 items-center justify-center rounded-lg">

@@ -76,7 +76,9 @@ export function SidebarLink({
   if (collapsed) {
     return (
       <Tooltip>
-        <TooltipTrigger className="w-full" render={<div className="w-full">{linkContent}</div>} />
+        <TooltipTrigger asChild>
+          <div className="w-full">{linkContent}</div>
+        </TooltipTrigger>
         <TooltipContent side="right" className="font-medium">
           {title}
           {label ? ` · ${label}` : ""}

@@ -6,7 +6,7 @@ import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
 import { ThemeProvider } from "@/shared/theme-provider";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
+  variable: "--font-global-sans",
   subsets: ["latin"],
 });
 

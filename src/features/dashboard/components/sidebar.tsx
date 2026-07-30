@@ -15,7 +15,7 @@ export function Sidebar() {
   if (isMobile) return null; // mobile uses <MobileSidebar />
 
   return (
-    <TooltipProvider delay={100}>
+    <TooltipProvider>
       <aside
         data-collapsed={collapsed}
         className={cn(
