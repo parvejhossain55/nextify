@@ -9,7 +9,18 @@ import { ThemeToggle } from "./theme-toggle";
 import { UserNav } from "./user-nav";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+export function Header({
+  user,
+}: {
+  user?:
+    | {
+        name: string | null;
+        email: string | null;
+        image?: string | null;
+        role?: string;
+      }
+    | undefined;
+}) {
   const { toggleCollapsed, isMobile, setMobileOpen } = useSidebar();
   const openCommandPalette = () => window.dispatchEvent(new CustomEvent("open-command-palette"));
 
@@ -88,7 +99,7 @@ export function Header() {
 
           {/* User avatar */}
           <div className="pl-1">
-            <UserNav />
+            <UserNav user={user} />
           </div>
         </div>
       </div>

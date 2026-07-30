@@ -8,7 +8,14 @@ import { Header } from "./header";
 import { CommandPalette } from "./command-palette";
 import { cn } from "@/lib/utils";
 
-function ShellContents({ children }: { children: React.ReactNode }) {
+type DashboardUser = {
+  name: string | null;
+  email: string | null;
+  image?: string | null;
+  role?: string;
+};
+
+function ShellContents({ children, user }: { children: React.ReactNode; user?: DashboardUser }) {
   const { collapsed, isMobile } = useSidebar();
   // Calculate left padding for desktop based on sidebar state
   const desktopPad = isMobile ? "" : collapsed ? "lg:pl-[72px]" : "lg:pl-64";
@@ -17,7 +24,7 @@ function ShellContents({ children }: { children: React.ReactNode }) {
       <Sidebar />
       <MobileSidebar />
       <div className={cn("flex min-h-dvh flex-col", desktopPad)}>
-        <Header />
+        <Header user={user} />
         <main
           id="content"
           className="flex-1 px-4 py-6 focus:outline-none md:px-6 md:py-8"
@@ -31,10 +38,16 @@ function ShellContents({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function DashboardShell({ children }: { children: React.ReactNode }) {
+export function DashboardShell({
+  children,
+  user,
+}: {
+  children: React.ReactNode;
+  user?: DashboardUser;
+}) {
   return (
     <SidebarProvider>
-      <ShellContents>{children}</ShellContents>
+      <ShellContents user={user}>{children}</ShellContents>
     </SidebarProvider>
   );
 }

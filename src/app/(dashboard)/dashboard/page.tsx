@@ -1,7 +1,6 @@
 import { auth } from "@/lib/auth/auth";
 import { redirect } from "next/navigation";
 import { UserProfile, UserList } from "@/features/user";
-import { LogoutButton } from "@/features/auth";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Users,

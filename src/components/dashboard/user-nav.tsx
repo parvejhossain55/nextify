@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 import {
   BadgeCheck,
   Bell,
@@ -31,10 +32,9 @@ export interface UserNavProps {
     image?: string | null;
     role?: string;
   };
-  onSignOut?: () => void;
 }
 
-export function UserNav({ user, onSignOut }: UserNavProps) {
+export function UserNav({ user }: UserNavProps) {
   const router = useRouter();
   const go = React.useCallback((href: string) => router.push(href), [router]);
 
@@ -51,6 +51,10 @@ export function UserNav({ user, onSignOut }: UserNavProps) {
         .map((n) => n[0]?.toUpperCase())
         .join("") || "JC",
   };
+
+  const handleSignOut = React.useCallback(async () => {
+    await signOut({ callbackUrl: "/login" });
+  }, []);
 
   return (
     <DropdownMenu>
@@ -74,16 +78,7 @@ export function UserNav({ user, onSignOut }: UserNavProps) {
           </Button>
         }
       />
-      <DropdownMenuContent align="end" className="w-64">
-        <DropdownMenuGroup>
-          <DropdownMenuLabel className="p-2.5">
-            <div className="flex flex-col space-y-1 leading-none">
-              <p className="text-sm font-medium">{display.name}</p>
-              <p className="text-muted-foreground text-xs">{display.email}</p>
-            </div>
-          </DropdownMenuLabel>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
+      <DropdownMenuContent align="end" className="w-54">
         <DropdownMenuGroup>
           <DropdownMenuItem onClick={() => go(ROUTES.SETTINGS)}>
             <Sparkles className="size-4" />
@@ -115,7 +110,7 @@ export function UserNav({ user, onSignOut }: UserNavProps) {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem
-            onClick={onSignOut}
+            onClick={() => void handleSignOut()}
             variant="destructive"
             className="w-full cursor-pointer"
           >
