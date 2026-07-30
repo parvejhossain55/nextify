@@ -3,7 +3,7 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { LayoutDashboard, Users, BarChart3, HelpCircle, Moon, Sun, Monitor } from "lucide-react";
-import { useTheme } from "@/components/theme-provider";
+import { useTheme } from "@/shared/theme-provider";
 import {
   CommandDialog,
   CommandGroup,
