@@ -90,50 +90,6 @@ export default async function DashboardPage() {
           </Card>
         ))}
       </div>
-
-      {/* User Profile + User List */}
-      <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-1">
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Profile</CardTitle>
-              <CardDescription>Manage your personal information</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <UserProfile />
-            </CardContent>
-          </Card>
-        </div>
-
-        {session.user.role === "ADMIN" ? (
-          <Card className="xl:col-span-2">
-            <CardHeader>
-              <CardTitle>All Users</CardTitle>
-              <CardDescription>List of all registered users in the system</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <UserList />
-            </CardContent>
-          </Card>
-        ) : (
-          <Card className="xl:col-span-2">
-            <CardHeader>
-              <CardTitle>Getting Started</CardTitle>
-              <CardDescription>Next steps to configure your workspace</CardDescription>
-            </CardHeader>
-            <CardContent className="text-muted-foreground space-y-3 text-sm">
-              <p>🎯 Complete your profile to unlock team collaboration features.</p>
-              <p>
-                🔔 Visit the <b>Notifications</b> page to manage preferences.
-              </p>
-              <p>
-                💡 Press <kbd className="bg-muted rounded border px-1.5 py-0.5 text-xs">⌘K</kbd>{" "}
-                anytime to navigate quickly.
-              </p>
-            </CardContent>
-          </Card>
-        )}
-      </div>
     </div>
   );
 }
