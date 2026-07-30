@@ -9,3 +9,5 @@ export * from "./user-nav";
 export * from "./command-palette";
 export * from "./header";
 export * from "./dashboard-shell";
+export * from "./workspace-analytics-chart";
+export * from "./device-traffic-chart";

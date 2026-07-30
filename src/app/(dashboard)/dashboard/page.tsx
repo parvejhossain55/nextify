@@ -9,6 +9,8 @@ import {
   ArrowUpRight,
   ArrowDownRight,
 } from "lucide-react";
+import { WorkspaceAnalyticsChart } from "@/features/dashboard/components/workspace-analytics-chart";
+import { DeviceTrafficChart } from "@/features/dashboard/components/device-traffic-chart";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -88,6 +90,20 @@ export default async function DashboardPage() {
             </CardContent>
           </Card>
         ))}
+      </div>
+
+      {/* Charts grid */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <Card className="col-span-1 lg:col-span-2">
+          <CardContent className="p-6">
+            <WorkspaceAnalyticsChart />
+          </CardContent>
+        </Card>
+        <Card className="col-span-1">
+          <CardContent className="p-6">
+            <DeviceTrafficChart />
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

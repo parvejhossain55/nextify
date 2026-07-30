@@ -19,6 +19,9 @@ export interface SidebarLinkProps {
 }
 
 function isActive(pathname: string, href: string, matchPrefixes: string[] = []): boolean {
+  if (href === "/dashboard") {
+    return pathname === "/dashboard";
+  }
   const checks = [href, ...matchPrefixes];
   return checks.some((p) => pathname === p || pathname.startsWith(p + "/"));
 }
