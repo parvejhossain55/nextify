@@ -66,6 +66,12 @@ test/
 - 🎯 Type-safe with TypeScript
 - 🚀 Optimized for production
 
+## Screenshots
+
+![Dashboard screenshot](screenshot/dashboard.jpg)
+
+Screenshots are available in the `screenshot/` folder.
+
 ## Getting Started
 
 ### Prerequisites

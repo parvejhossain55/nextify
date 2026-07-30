@@ -56,6 +56,7 @@ function CommandDialog({
   return (
     <Dialog {...props}>
       <DialogContent
+        showCloseButton={false}
         className="overflow-hidden !p-0 sm:!max-w-lg [&>button:last-child]:hidden"
         aria-describedby={undefined}
       >
